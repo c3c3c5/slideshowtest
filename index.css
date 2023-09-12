@@ -40,10 +40,10 @@ button {
     background-color: gray;
     border: none;
     cursor: pointer;
-    transition: width 0.5s ease-in-out;
 }
 
 .selected {
+    transition: width 0.5s ease-in-out;
     background-color: black;
     width: 50px;
     border-radius: 20px;
