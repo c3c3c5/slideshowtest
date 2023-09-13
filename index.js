@@ -1,7 +1,7 @@
 let currentimage = 0;
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    setInterval(slideshow, 3000);
+    //setInterval(slideshow, 3000);
 })
 
 function slideshow(){
@@ -81,3 +81,47 @@ document.querySelectorAll(".slidersround").forEach((b,i)=>{
         moveImage(index);
     })
 })
+
+
+let firstx;
+let secondx;
+let pos;
+
+document.getElementById("menuslider").addEventListener("touchstart", (e)=>{
+    firstx = e.changedTouches[0].clientX;
+    console.log(firstx);
+})
+
+document.getElementById("menuslider").addEventListener("touchend", (e)=>{
+    if (pos >= -150) {
+        document.getElementById("menuslider").style.left = `${0}px`;
+    } else {
+        document.getElementById("menuslider").style.left = `${-300}px`;
+    }
+    /*else if ( pos > -450) {
+        document.getElementById("menuslider").style.left = `${-300}px`;
+    }*/
+})
+
+document.getElementById("menuslider").addEventListener("touchmove", (e)=>{
+    let offsetmove = abs(e.changedTouches[0].clientX - firstx);
+    if (e.changedTouches[0].clientX > firstx) {
+        console.log("swiping right");
+        pos = document.getElementById("menuslider").getBoundingClientRect().left + offsetmove;
+        pos = pos + 20;
+        console.log(pos);
+        document.getElementById("menuslider").style.left = `${pos}px`;
+    } else {
+        console.log("swiping left");
+        pos = document.getElementById("menuslider").getBoundingClientRect().left - offsetmove;
+        document.getElementById("menuslider").style.left = `${pos}px`;
+    }
+})
+
+function abs(number) {
+    if (number < 0){
+        return -1 * number;
+    } else {
+        return number;
+    }
+}

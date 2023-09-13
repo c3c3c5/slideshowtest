@@ -40,6 +40,7 @@ button {
     background-color: gray;
     border: none;
     cursor: pointer;
+    z-index: 1;
 }
 
 .selected {
